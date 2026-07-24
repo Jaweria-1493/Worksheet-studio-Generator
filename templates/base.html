@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Worksheet Studio{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">WS</span>
+      <div class="brand-text">
+        <strong>Worksheet</strong>
+        <span>Studio</span>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a href="{{ url_for('home') }}" class="nav-item {{ 'is-active' if active=='home' else '' }}">
+        <span class="nav-dot"></span> Home
+      </a>
+      <a href="{{ url_for('setup') }}" class="nav-item {{ 'is-active' if active=='setup' else '' }}">
+        <span class="nav-dot"></span> School Setup
+      </a>
+      <a href="{{ url_for('create') }}" class="nav-item {{ 'is-active' if active=='create' else '' }}">
+        <span class="nav-dot"></span> Create Worksheet
+      </a>
+      <a href="{{ url_for('ai_assist') }}" class="nav-item {{ 'is-active' if active=='ai' else '' }}">
+        <span class="nav-dot"></span> AI Assist
+      </a>
+      <a href="{{ url_for('about') }}" class="nav-item {{ 'is-active' if active=='about' else '' }}">
+        <span class="nav-dot"></span> Info / About
+      </a>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="foot-label">Method</div>
+      <div class="foot-value">Grade-aware · Bilingual · Free export</div>
+    </div>
+  </aside>
+
+  <main class="content">
+    {% block content %}{% endblock %}
+  </main>
+</div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

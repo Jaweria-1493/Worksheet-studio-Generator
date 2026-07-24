@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Info — Worksheet Studio{% endblock %}
+{% block content %}
+<div class="page-head">
+  <span class="eyebrow">Reference</span>
+  <h1>How Worksheet Studio works</h1>
+  <p>A quick reference for everything the dashboard supports.</p>
+</div>
+
+<div class="grid grid-3">
+  <div class="card">
+    <h3>Question types</h3>
+    <p>Multiple Choice, Fill in the Blanks, Match the Column, Short Questions, and Detailed Questions — mix any combination, in any quantity.</p>
+  </div>
+  <div class="card">
+    <h3>Grade-aware themes</h3>
+    <p>Grade 1–5 renders colorful and cartoonic with friendly icons. Grade 6–10 renders clean and professional. You can force either from School Setup.</p>
+  </div>
+  <div class="card">
+    <h3>Accurate answer keys</h3>
+    <p>Every question type carries its own answer, so the key always matches what's printed — even when match-the-column options are shuffled per copy.</p>
+  </div>
+  <div class="card">
+    <h3>Layout controls</h3>
+    <p>Questions per page, spacing, number of copies, same-order or shuffled-per-copy randomization, and a binding gap for printing.</p>
+  </div>
+  <div class="card">
+    <h3>Bilingual support</h3>
+    <p>Full Urdu support using pure Urdu script (never Roman Urdu), with correct right-to-left shaping on every label and question.</p>
+  </div>
+  <div class="card">
+    <h3>Export</h3>
+    <p>Download as PDF or Word (.docx). When an answer key is generated separately, both files are bundled into one .zip download.</p>
+  </div>
+</div>
+
+<div class="card" style="margin-top:20px;">
+  <h3>Running this app</h3>
+  <p style="margin-bottom:10px;">This dashboard is a Flask app. To run it locally:</p>
+  <pre class="mono" style="background:#f1f3f8;padding:14px;border-radius:8px;overflow:auto;">pip install -r requirements.txt
+python app.py</pre>
+  <p>Then open <span class="mono">http://localhost:5000</span>. PDF export uses WeasyPrint, which needs Pango/Cairo system libraries installed — see README.md for platform-specific setup notes.</p>
+</div>
+{% endblock %}

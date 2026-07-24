@@ -1,1 +1,47 @@
-placeholder
+{% extends "base.html" %}
+{% block title %}Home — Worksheet Studio{% endblock %}
+{% block content %}
+<div class="page-head">
+  <span class="eyebrow">Dashboard</span>
+  <h1>Build a worksheet in three steps</h1>
+  <p>Brand it once, add questions in the format your class needs, and export a clean student copy plus an accurate answer key — in English or pure Urdu.</p>
+</div>
+
+<div class="grid grid-3">
+  <div class="stat-card">
+    <div class="stat-num">5</div>
+    <div class="stat-label">Question types supported</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">1–10</div>
+    <div class="stat-label">Grade range, auto-themed</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">PDF · DOCX</div>
+    <div class="stat-label">Export formats</div>
+  </div>
+</div>
+
+<div class="grid grid-3" style="margin-top:22px;">
+  <div class="card">
+    <h3>1 · School Setup</h3>
+    <p>Add the school name, logo, brand colors and the cover-page style. This is saved once and reused on every worksheet.</p>
+    <div class="action-row"><a class="btn btn-ghost" href="{{ url_for('setup') }}">Go to Setup →</a></div>
+  </div>
+  <div class="card">
+    <h3>2 · Create Worksheet</h3>
+    <p>Add Multiple Choice, Fill in the Blanks, Match the Column, Short or Detailed questions, set layout, and preview live.</p>
+    <div class="action-row"><a class="btn btn-ghost" href="{{ url_for('create') }}">Start Building →</a></div>
+  </div>
+  <div class="card">
+    <h3>3 · AI Assist (optional)</h3>
+    <p>Paste a chapter or pasted text and auto-draft questions — free parsing, or AI-polished with your own API key.</p>
+    <div class="action-row"><a class="btn btn-ghost" href="{{ url_for('ai_assist') }}">Try AI Assist →</a></div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:22px;">
+  <h3>How grading themes work</h3>
+  <p>Grades 1–5 render in a colorful, cartoonic style with friendly icons; Grades 6–10 switch to a clean, professional layout automatically. You can also force either style from School Setup.</p>
+</div>
+{% endblock %}

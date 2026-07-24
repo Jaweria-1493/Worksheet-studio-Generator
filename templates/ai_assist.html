@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}AI Assist — Worksheet Studio{% endblock %}
+{% block content %}
+<div class="page-head">
+  <span class="eyebrow">Optional</span>
+  <h1>AI Assist</h1>
+  <p>Paste text (e.g. from a textbook, or a set of questions you already have) and turn it into worksheet questions — for free, or AI-polished with your own Anthropic API key.</p>
+</div>
+
+<div class="grid grid-2">
+  <div class="card form-section">
+    <h3>Source text</h3>
+    <div class="field">
+      <label>Paste your chapter, notes, or ready-made questions</label>
+      <textarea id="source_text" rows="12" placeholder="Paste text here..."></textarea>
+    </div>
+
+    <div class="field-row" style="margin-top:10px;">
+      <div class="field">
+        <label>Grade</label>
+        <select id="ai_grade">{% for g in range(1,11) %}<option value="{{g}}" {{ 'selected' if g==3 }}>Grade {{g}}</option>{% endfor %}</select>
+      </div>
+      <div class="field"><label>Subject</label><input type="text" id="ai_subject" placeholder="e.g. Science"></div>
+    </div>
+
+    <div class="action-row">
+      <button class="btn btn-ghost" id="free_parse_btn">🧩 Parse Questions (Free)</button>
+    </div>
+    <p class="helper-note">Free parsing looks for numbered questions (1. 2. 3. ...), with optional a) b) c) d) options and a trailing "Answers:" section.</p>
+  </div>
+
+  <div class="card form-section">
+    <h3>AI-generate instead (needs your API key)</h3>
+    <div class="field">
+      <label>Anthropic API key</label>
+      <input type="password" id="api_key" placeholder="sk-ant-...">
+    </div>
+    <div class="field-row">
+      <div class="field"><label>Number of questions</label><input type="number" id="num_questions" value="6" min="1" max="30"></div>
+      <div class="field">
+        <label>Language</label>
+        <select id="ai_lang"><option value="en">English</option><option value="ur">Urdu</option></select>
+      </div>
+    </div>
+    <div class="action-row">
+      <button class="btn btn-accent" id="ai_generate_btn">✨ Generate with AI</button>
+    </div>
+    <p class="helper-note">Your key is sent directly to the server for this one request only — it is never saved.</p>
+    <div id="ai_status"></div>
+  </div>
+</div>
+
+<div class="card" style="margin-top:20px;">
+  <h3>Generated questions</h3>
+  <div id="ai_questions_preview"><p class="helper-note">Nothing generated yet.</p></div>
+  <div class="action-row">
+    <button class="btn btn-primary" id="send_to_builder_btn">→ Send to Worksheet Builder</button>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/ai_assist.js') }}"></script>
+{% endblock %}

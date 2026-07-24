@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %}Create Worksheet — Worksheet Studio{% endblock %}
+{% block content %}
+<div class="page-head">
+  <span class="eyebrow">Step 2</span>
+  <h1>Create your worksheet</h1>
+  <p>Add questions of any type, set the layout, then preview before exporting to PDF or Word.</p>
+</div>
+
+<div class="grid grid-2">
+  <div>
+    <div class="card form-section">
+      <h3>Worksheet details</h3>
+      <div class="field-row">
+        <div class="field">
+          <label>Title</label>
+          <input type="text" id="ws_title" placeholder="e.g. Science Worksheet — Chapter 2">
+        </div>
+        <div class="field">
+          <label>Grade</label>
+          <select id="ws_grade">
+            {% for g in range(1,11) %}<option value="{{g}}" {{ 'selected' if g==3 }}>Grade {{g}}</option>{% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Subject</label>
+          <input type="text" id="ws_subject" placeholder="e.g. Science">
+        </div>
+        <div class="field">
+          <label>Language</label>
+          <select id="ws_lang">
+            <option value="en">English</option>
+            <option value="ur">Urdu (خالص اردو)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="card form-section">
+      <h3>Questions</h3>
+      <div class="type-picker">
+        <button class="type-chip" data-type="mcq">+ Multiple Choice</button>
+        <button class="type-chip" data-type="fill_blank">+ Fill in the Blank</button>
+        <button class="type-chip" data-type="match_column">+ Match the Column</button>
+        <button class="type-chip" data-type="short">+ Short Question</button>
+        <button class="type-chip" data-type="detailed">+ Detailed Question</button>
+      </div>
+      <div id="questions_list"></div>
+      <p id="no_q_hint" class="helper-note">No questions yet — click a button above to add your first question.</p>
+    </div>
+
+    <div class="card form-section">
+      <h3>Layout</h3>
+      <div class="field-row">
+        <div class="field"><label>Questions per page (0 = unlimited)</label><input type="number" id="qpp" value="0" min="0"></div>
+        <div class="field"><label>Spacing (px)</label><input type="number" id="spacing" value="18" min="0"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Number of copies</label><input type="number" id="copies" value="1" min="1"></div>
+        <div class="field">
+          <label>Randomize order</label>
+          <select id="randomize"><option value="same">Same order every copy</option><option value="different">Shuffled per copy</option></select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Binding gap (px)</label><input type="number" id="binding_gap" value="0" min="0"></div>
+        <div class="field">
+          <label>Answer key</label>
+          <select id="answer_key_mode">
+            <option value="separate">Separate teacher-only file</option>
+            <option value="inline">Same file — last page</option>
+            <option value="both">Both</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="card">
+      <h3>Preview & export</h3>
+      <p style="margin-bottom:14px;">Preview updates from your current questions and layout.</p>
+      <div class="action-row" style="margin-top:0;">
+        <button class="btn btn-ghost" id="preview_btn">🔍 Preview</button>
+      </div>
+      <iframe id="preview_frame" class="preview-frame" style="margin-top:14px;"></iframe>
+
+      <div class="form-section" style="margin-top:18px;">
+        <h3>Export</h3>
+        <div class="field-row">
+          <div class="field">
+            <label>Format</label>
+            <select id="export_format"><option value="pdf">PDF</option><option value="docx">Word (.docx)</option></select>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="generate_btn">📄 Generate Worksheet</button>
+      </div>
+      <div id="gen_status"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/create.js') }}"></script>
+{% endblock %}

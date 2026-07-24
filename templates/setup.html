@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}School Setup — Worksheet Studio{% endblock %}
+{% block content %}
+<div class="page-head">
+  <span class="eyebrow">Step 1</span>
+  <h1>School setup & branding</h1>
+  <p>These settings apply to every worksheet you generate. They're kept in your browser (localStorage) — nothing is uploaded until you actually generate a file.</p>
+</div>
+
+<div class="card">
+  <div class="form-section">
+    <h3>Identity</h3>
+    <div class="field-row">
+      <div class="field">
+        <label>School name</label>
+        <input type="text" id="school_name" placeholder="e.g. Roots Millennium School">
+      </div>
+      <div class="field">
+        <label>Logo (PNG/JPG)</label>
+        <input type="file" id="logo_file" accept="image/*">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Logo size: <span id="logo_size_val">70</span>px</label>
+        <input type="range" id="logo_size" min="30" max="200" step="5" value="70">
+      </div>
+      <div class="field">
+        <label>Preview</label>
+        <img id="logo_preview" style="max-width:70px;max-height:70px;border-radius:8px;border:1px solid var(--line);display:none;">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <h3>Theme</h3>
+    <div class="field-row">
+      <div class="field">
+        <label>Theme mode</label>
+        <select id="theme_mode">
+          <option value="auto">Auto (based on grade)</option>
+          <option value="colorful">Always colorful / cartoonic</option>
+          <option value="professional">Always professional / minimal</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Cover page style</label>
+        <select id="cover_style">
+          <option value="modern">Modern</option>
+          <option value="classic">Classic</option>
+          <option value="minimal">Minimal</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Primary color</label>
+        <input type="color" id="primary_color" value="#2E86AB">
+      </div>
+      <div class="field">
+        <label>Accent color</label>
+        <input type="color" id="accent_color" value="#F6C90E">
+      </div>
+    </div>
+  </div>
+
+  <div class="action-row">
+    <button class="btn btn-accent" id="save_setup_btn">💾 Save School Setup</button>
+    <a class="btn btn-primary" href="{{ url_for('create') }}">Next: Create Worksheet →</a>
+  </div>
+  <div id="setup_status"></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/setup.js') }}"></script>
+{% endblock %}
